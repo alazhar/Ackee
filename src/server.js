@@ -103,32 +103,32 @@ const apolloServer = createApolloServer(ApolloServer, {
 	context: createMicroContext
 })
 
-const graphqlPath = '/api'
+const graphqlPath = '/ackee/api'
 const graphqlHandler = apolloServer.createHandler({ path: graphqlPath })
 
 const routes = [
 
-	get('/', async (req, res) => {
+	get('/ackee/', async (req, res) => {
 		res.setHeader('Content-Type', 'text/html; charset=utf-8')
 		res.end(await index)
 	}),
-	get('/index.html', async (req, res) => {
+	get('/ackee/index.html', async (req, res) => {
 		res.setHeader('Content-Type', 'text/html; charset=utf-8')
 		res.end(await index)
 	}),
-	get('/favicon.ico', async (req, res) => {
+	get('/ackee/favicon.ico', async (req, res) => {
 		res.setHeader('Content-Type', 'image/vnd.microsoft.icon')
 		res.end(await favicon)
 	}),
-	get('/index.css', async (req, res) => {
+	get('/ackee/index.css', async (req, res) => {
 		res.setHeader('Content-Type', 'text/css; charset=utf-8')
 		res.end(await styles)
 	}),
-	get('/index.js', async (req, res) => {
+	get('/ackee/index.js', async (req, res) => {
 		res.setHeader('Content-Type', 'text/javascript; charset=utf-8')
 		res.end(await scripts)
 	}),
-	get('/tracker.js', async (req, res) => {
+	get('/ackee/tracker.js', async (req, res) => {
 		res.setHeader('Content-Type', 'text/javascript; charset=utf-8')
 		res.end(await tracker)
 	}),
@@ -139,13 +139,13 @@ const routes = [
 
 	post(graphqlPath, graphqlHandler),
 	get(graphqlPath, graphqlHandler),
-	get('/.well-known/apollo/server-health', graphqlHandler),
+	get('/ackee/.well-known/apollo/server-health', graphqlHandler),
 
-	get('/*', notFound),
-	post('/*', notFound),
-	put('/*', notFound),
-	patch('/*', notFound),
-	del('/*', notFound)
+	get('/ackee/*', notFound),
+	post('/ackee/*', notFound),
+	put('/ackee/*', notFound),
+	patch('/ackee/*', notFound),
+	del('/ackee/*', notFound)
 
 ].filter(Boolean)
 
